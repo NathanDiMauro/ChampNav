@@ -1,4 +1,3 @@
-import React from 'react';
 // https://github.com/PrudhviGNV/pathFinderVisualizer/blob/master/src/algorithms/aStar.js
 // Returns all nodes in the order in which they were visited.
 // Make nodes point back to their previous node so that we can compute the shortest path
