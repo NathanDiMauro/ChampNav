@@ -45,7 +45,19 @@
 }
 
 #interior-map {
-  transform: translate(-100px, -100px);
+  transform: translate(-30px, -500px);
   width: 300%;
   height: 300%;
+}
+
+#current-coords {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+#current-coords-display{
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
 }
