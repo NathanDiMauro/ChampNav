@@ -61,3 +61,22 @@
   margin: 0;
   padding: 0;
 }
+
+#left-right-container {
+  margin: 0;
+  padding: 0;
+}
+
+#left-right-item {
+  display: inline;
+}
+
+#moveup {
+  margin: 0;
+  padding: 0;
+}
+
+#movedown {
+  margin: 0;
+  padding: 0;
+}

@@ -12,8 +12,12 @@ function App() {
       </div>
       <input type="button" id="moveup" class="button" value="Move Up"></input>
       <input type="button" id="movedown" class="button" value="Move Down"></input>
-      <input type="button" id="moveleft" class="button" value="Move Left"></input>
-      <input type="button" id="moveright" class="button" value="Move Right"></input>
+
+      <ul id="left-right-container">
+        <li id="left-right-item"><input type="button" id="moveleft" class="button" value="Move Left"></input></li>
+        <li id="left-right-item"><input type="button" id="moveright" class="button" value="Move Right"></input></li>
+      </ul>
+
       <p id="current-coords-display">Current Coordinates:</p>
       <p id="current-coords"></p>
       </header>
