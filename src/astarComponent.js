@@ -6,10 +6,10 @@ class AstarComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-          START_NODE_ROW: 0,
-          START_NODE_COL: 0,
-          FINISH_NODE_ROW: 3,
-          FINISH_NODE_COL: 2,
+          START_NODE_ROW: 3,
+          START_NODE_COL: 2,
+          FINISH_NODE_ROW: 0,
+          FINISH_NODE_COL: 0,
           ROW_COUNT: 5,
           COL_COUNT: 5
         };
