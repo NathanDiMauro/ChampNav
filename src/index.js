@@ -7,14 +7,14 @@ import {
   BrowserRouter, 
   Routes,
   Route } from "react-router-dom";
-import Outdoor from "./outdoor"
+import MapContainer from "./outdoor"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/outdoor" element={<Outdoor />} />
+        <Route path="/outdoor" element={<MapContainer />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
