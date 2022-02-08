@@ -123,7 +123,14 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
         <div id="interior-map-container">
-          <div id="zoom-scaler-body"></div>
+
+          <div id="interior-button-close"></div>
+          <div id="interior-button-follow"></div>
+          <div id="interior-button-settings"></div>
+          <div id="interior-zoom-base">
+            <div id="interior-zoom-handle"></div>
+          </div>
+
           <img id="interior-map" src= {floorplan}/>
         </div>
         <input type="button" id="moveup" class="button" value="Move Up"></input>
