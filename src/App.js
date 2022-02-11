@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import floorplan from './ccmfloorplan.svg'
+import floorplan from './ccmfloorplansimplified.svg'
 import './App.css';
 import AstarComponent from './astarComponent.js' 
 
@@ -140,8 +140,10 @@ class App extends React.Component {
           <div id="interior-button-follow"></div>
           <div id="interior-button-settings"></div>
 
-          <div class="slidecontainer">
-            <input type="range" min="1" max="600" defaultValue="300" class="slider" id="myRange"/>
+          <div id="slider-container">
+            <div class="slidecontainer">
+              <input type="range" min="1" max="600" defaultValue="300" class="slider" id="myRange"/>
+            </div>
           </div>
 
           <img id="interior-map" src= {floorplan}/>
