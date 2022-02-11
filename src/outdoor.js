@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, Marker, InfoWindow, GoogleApiWrapper, Polyline, Polygon } from 'google-maps-react';
+import { Map, Marker, InfoWindow, GoogleApiWrapper, Polyline} from 'google-maps-react';
 import { locations } from "./Locations"
 import axios from 'axios';
 
