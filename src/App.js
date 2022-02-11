@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import floorplan from './ccmfloorplan.svg'
+import floorplan from './ccmfloorplansimplified.svg'
 import './App.css';
 import AstarComponent from './astarComponent.js' 
 
@@ -55,6 +55,9 @@ class App extends React.Component {
     btnLeft.addEventListener("click", this.moveLeft)
     var btnRight = document.getElementById("moveright");
     btnRight.addEventListener("click", this.moveRight)
+
+    var zoomHandle = document.getElementById("myRange");
+    zoomHandle.addEventListener("input", this.testZoom)
   
     var currentMap = document.getElementById("interior-map");
     currentMap.style.transform = "translate(-30px, -500px)"
@@ -118,6 +121,15 @@ class App extends React.Component {
     displayCoords()
   }
 
+  testZoom() {
+    var currentMap = document.getElementById("interior-map");
+    var zoomSlider = document.getElementById("myRange");
+    var coordsDisplay = document.getElementById("current-coords");
+
+    currentMap.style.width = zoomSlider.value + "%"
+    currentMap.style.height = zoomSlider.value + "%"
+  }
+
   render(){
     return (
       <div className="App">
@@ -127,8 +139,11 @@ class App extends React.Component {
           <div id="interior-button-close"></div>
           <div id="interior-button-follow"></div>
           <div id="interior-button-settings"></div>
-          <div id="interior-zoom-base">
-            <div id="interior-zoom-handle"></div>
+
+          <div id="slider-container">
+            <div class="slidecontainer">
+              <input type="range" min="1" max="600" defaultValue="300" class="slider" id="myRange"/>
+            </div>
           </div>
 
           <img id="interior-map" src= {floorplan}/>
