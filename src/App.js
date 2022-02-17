@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import floorplan from './ccmfloorplansimplified.svg'
 import './App.css';
 import AstarComponent from './astarComponent.js' 
