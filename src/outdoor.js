@@ -3,6 +3,7 @@ import { Map, Marker, InfoWindow, GoogleApiWrapper, Polyline} from 'google-maps-
 import { locations } from "./Locations"
 import mapStyle from "./mapStyle.json" 
 import axios from 'axios'; 
+import App from './App';
 
 export class MapContainer extends Component {
   state = {
@@ -189,6 +190,7 @@ export class MapContainer extends Component {
             strokeOpacity={0.8}
             strokeWeight={2} 
           />
+          <App />
         </Map>
     );
   }

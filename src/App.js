@@ -46,6 +46,7 @@ function displayCoords() {
 
 class App extends React.Component {
   componentDidMount() {
+    this.closeInteriorMap();
     var btnUp = document.getElementById("moveup");
     btnUp.addEventListener("click", this.moveUp)
     var btnDown = document.getElementById("movedown");
@@ -136,13 +137,16 @@ class App extends React.Component {
   closeInteriorMap() {
     var interiorDisplay = document.getElementById("interior-map-container");
     var showDisplay = document.getElementById("debugOpenIntDisplay");
+
     interiorDisplay.style.visibility = "hidden"
     showDisplay.style.visibility = "visible"
+    showDisplay.style.zIndex = 11
   }
 
   openInteriorMap() {
     var interiorDisplay = document.getElementById("interior-map-container");
     var showDisplay = document.getElementById("debugOpenIntDisplay");
+
     interiorDisplay.style.visibility = "visible"
     showDisplay.style.visibility = "hidden"
   }
