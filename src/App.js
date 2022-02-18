@@ -57,6 +57,11 @@ class App extends React.Component {
 
     var zoomHandle = document.getElementById("myRange");
     zoomHandle.addEventListener("input", this.testZoom)
+
+    var closeIntDisplay = document.getElementById("interior-button-close");
+    closeIntDisplay.addEventListener("click", this.closeInteriorMap)
+    var openIntDisplay = document.getElementById("debugOpenIntDisplay")
+    openIntDisplay.addEventListener("click", this.openInteriorMap)
   
     var currentMap = document.getElementById("interior-map");
     currentMap.style.transform = "translate(-30px, -500px)"
@@ -123,16 +128,32 @@ class App extends React.Component {
   testZoom() {
     var currentMap = document.getElementById("interior-map");
     var zoomSlider = document.getElementById("myRange");
-    var coordsDisplay = document.getElementById("current-coords");
 
     currentMap.style.width = zoomSlider.value + "%"
     currentMap.style.height = zoomSlider.value + "%"
+  }
+
+  closeInteriorMap() {
+    var interiorDisplay = document.getElementById("interior-map-container");
+    var showDisplay = document.getElementById("debugOpenIntDisplay");
+    interiorDisplay.style.visibility = "hidden"
+    showDisplay.style.visibility = "visible"
+  }
+
+  openInteriorMap() {
+    var interiorDisplay = document.getElementById("interior-map-container");
+    var showDisplay = document.getElementById("debugOpenIntDisplay");
+    interiorDisplay.style.visibility = "visible"
+    showDisplay.style.visibility = "hidden"
   }
 
   render(){
     return (
       <div className="App">
         <header className="App-header">
+
+        <div id="debugOpenIntDisplay"></div>
+
         <div id="interior-map-container">
 
           <div id="interior-button-close"></div>
@@ -141,7 +162,7 @@ class App extends React.Component {
 
           <div id="slider-container">
             <div class="slidecontainer">
-              <input type="range" min="1" max="600" defaultValue="300" class="slider" id="myRange"/>
+              <input type="range" min="100" max="600" defaultValue="300" class="slider" id="myRange"/>
             </div>
           </div>
 
