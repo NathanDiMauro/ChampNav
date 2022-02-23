@@ -83,10 +83,10 @@ class AstarComponent extends React.Component {
         }
         
         // display the path
-        console.log("The path is: ")
-        for (const node in path){
-            console.log(path[node].row, path[node].col);
-        }
+        // console.log("The path is: ")
+        // for (const node in path){
+        //     console.log(path[node].row, path[node].col);
+        // }
 
         return (
             <h1>Astar loaded</h1>

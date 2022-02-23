@@ -19,25 +19,26 @@ export class MapContainer extends Component {
   };
 
   getRoute(){
-    // axios.get(`https://maps.googleapis.com/maps/api/directions/json?destination="44.473389263658824,-73.20608314784715"&origin="44.47394816197259,-73.2041640018212"&key=AIzaSyBtX-ubyw8TF5OeJUcP_YccaTEI9eDs3Og`)
-    //   .then(res =>
-    //     this.setState({
-    //       data: res.data
-    //     })
-    //   )
+    axios.get(`https://maps.googleapis.com/maps/api/directions/json?destination="`+this.state.destinationLat+`,`+this.state.destinationLng+`"&origin="`+this.state.originLat+`,`+this.state.originLng+`"&mode=walking&key=AIzaSyBtX-ubyw8TF5OeJUcP_YccaTEI9eDs3Og`)
+      .then(res =>
+        this.setState({
+          directions: res.data.routes[0].legs[0].steps
+        })
+      )
+  }
+
+
+  buildRoute(){
+    var tempRoute = []
+    tempRoute.push(this.state.directions[0].start_location)
+
+    for (const step in this.state.directions){
+      tempRoute.push(this.state.directions[step].end_location)
+    }
+
     this.setState({
-      route: [
-        {"lat": this.state.originLat, "lng": this.state.originLng},
-        {"lat": this.state.destinationLat, "lng": this.state.destinationLng}
-      ]
-      // [ 
-      //   {"lat": 44.47366347350147, "lng": -73.20418545949217},
-      //   {"lat": 44.47396347350147, "lng": -73.20418545949217},
-      //   {"lat": 44.4739072, "lng": -73.2063915},
-      //   {"lat": 44.4735558, "lng": -73.20615289999999},
-      //   {"lat": 44.4735558, "lng": -73.20593289999999},
-      //   {"lat": 44.4733558, "lng": -73.20593289999999},
-      // ]
+      directions: null,
+      route: tempRoute
     })
   }
 
@@ -62,13 +63,13 @@ export class MapContainer extends Component {
         destinationLat: parseFloat(props.position.lat),
         destinationLng: parseFloat(props.position.lng),
       })
+      this.getRoute()
     }
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
     });
-    this.getRoute();
   }
 
   onMarkerClick = (props, marker) => this.markerHandler(props, marker)
@@ -99,19 +100,12 @@ export class MapContainer extends Component {
        styles: mapStyle
     })
  }
- 
- setOrigin() {
-    console.log("Origin Set")
- }
-
- setDestination(){
-
- }
 
   render() {
-    console.log("Origin:", this.state.originLat, ",", this.state.originLng)
-    console.log("Destination:", this.state.destinationLat, ",", this.state.destinationLng)
-    console.log("Route:", this.state.route)
+    // console.log("Route:", this.state.route)
+    if (this.state.directions != null){
+      this.buildRoute();
+    }
     return (
         <Map
           id="58f3d0b518e303d3"
