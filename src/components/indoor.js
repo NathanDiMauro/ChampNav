@@ -1,6 +1,6 @@
 import React from 'react';
-import floorplan from './ccmfloorplansimplified.svg'
-import './App.css';
+import floorplan from '../floorPlans/ccmfloorplansimplified.svg'
+import '../styles/App.css';
 import AstarComponent from './astarComponent.js' 
 
 function getXandY() {
@@ -44,7 +44,7 @@ function displayCoords() {
   coordsDisplay.innerText=coordsText
 }
 
-class App extends React.Component {
+class Indoor extends React.Component {
   componentDidMount() {
     this.closeInteriorMap();
     var btnUp = document.getElementById("moveup");
@@ -189,4 +189,4 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+export default Indoor;

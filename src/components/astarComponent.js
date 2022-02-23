@@ -1,6 +1,6 @@
 import { getByPlaceholderText } from '@testing-library/dom';
 import React from 'react';
-import {AStar} from './astar';
+import {AStar} from '../data/astar';
 
 class AstarComponent extends React.Component {
     constructor() {

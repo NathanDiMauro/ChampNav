@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Map, Marker, InfoWindow, GoogleApiWrapper, Polyline} from 'google-maps-react';
-import { locations } from "./Locations"
-import mapStyle from "./mapStyle.json" 
+import { locations } from "../data/Locations"
+import mapStyle from "../data/mapStyle.json" 
 import axios from 'axios'; 
-import App from './App';
+import App from './indoor';
 
 export class MapContainer extends Component {
   state = {
