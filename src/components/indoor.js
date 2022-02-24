@@ -157,11 +157,11 @@ class Indoor extends React.Component {
       <div className="App">
         <header className="App-header">
 
-        <div id="debugOpenIntDisplay"></div>
+        <div id="debugOpenIntDisplay">OPEN INTERIOR MAP</div>
 
         <div id="interior-map-container">
 
-          <div id="interior-button-close"></div>
+          <div id="interior-button-close">X</div>
           <div id="interior-button-follow"></div>
           <div id="interior-button-settings"></div>
 
@@ -171,6 +171,7 @@ class Indoor extends React.Component {
             </div>
           </div>
 
+          <div id="interior-title">CCM Floor 2</div>
           <div id="interior-curent-loc"></div>
 
           <div id="interior-map-transform-box">

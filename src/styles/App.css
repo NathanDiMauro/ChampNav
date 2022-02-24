@@ -118,6 +118,16 @@
   border-radius: 100%;
   background-color: lightblue;
   box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.74);
+  line-height: 50px;
+  color: grey;
+  font-weight: bold;
+  font-size: 15px;
+  user-select: none;
+}
+
+#interior-button-close:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 #interior-button-follow {
@@ -160,13 +170,43 @@
 
 #debugOpenIntDisplay {
   margin: 0;
+  margin-top: 15px;
   padding: 0;
-  min-width: 50px;
-  min-height: 50px;
-  border-radius: 100%;
+  min-width: 125px;
+  min-height: 35px;
+  border-radius: 5px;
   background-color: lightblue;
   box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.74);
   visibility: hidden;
+  font-size: 12px;
+  color: darkblue;
+  line-height: 35px;
+  user-select: none;
+}
+
+#debugOpenIntDisplay:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+#interior-title {
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  position: absolute;
+  color: black;
+  text-align: center;
+  margin-left: 2%;
+  margin-top: 2%;
+  background-color: lightblue;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.74);
 }
 
 /* https://www.w3schools.com/howto/howto_js_rangeslider.asp
