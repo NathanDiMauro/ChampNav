@@ -127,11 +127,10 @@ class Indoor extends React.Component {
   }
 
   testZoom() {
-    var currentMap = document.getElementById("interior-map");
+    var currentMap = document.getElementById("interior-map-transform-box");
     var zoomSlider = document.getElementById("myRange");
 
-    currentMap.style.width = zoomSlider.value + "%"
-    currentMap.style.height = zoomSlider.value + "%"
+    currentMap.style.transform = "scale(" + zoomSlider.value + "%)"
   }
 
   closeInteriorMap() {
@@ -166,11 +165,13 @@ class Indoor extends React.Component {
 
           <div id="slider-container">
             <div class="slidecontainer">
-              <input type="range" min="100" max="600" defaultValue="300" class="slider" id="myRange"/>
+              <input type="range" min="50" max="200" defaultValue="100" class="slider" id="myRange"/>
             </div>
           </div>
 
-          <img id="interior-map" src= {floorplan}/>
+          <div id="interior-map-transform-box">
+            <img id="interior-map" src= {floorplan}/>
+          </div>
         </div>
         <input type="button" id="moveup" class="button" value="Move Up"></input>
         <input type="button" id="movedown" class="button" value="Move Down"></input>
@@ -182,6 +183,7 @@ class Indoor extends React.Component {
 
         <p id="current-coords-display">Current Coordinates:</p>
         <p id="current-coords"></p>
+
         </header>
 
         <AstarComponent />

@@ -47,9 +47,9 @@
   position: relative;
 }
 
-#interior-map {
+#interior-map-transform-box {
   transform-origin: center;
-  transform: scale(500%,500%) translate(-30px, -500px);
+  transform: scale(0.8);
 }
 
 #current-coords {
