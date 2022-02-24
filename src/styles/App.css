@@ -52,6 +52,28 @@
   transform: scale(0.8);
 }
 
+#interior-curent-loc {
+  margin: auto;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+  border-radius: 100%;
+  background-color: skyblue;
+  box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.74);
+  position: relative;
+  top: 90%;
+  transform-origin: center;
+  transform: scale(1.0);
+  animation: locPulse 3s infinite;
+}
+
+@keyframes locPulse {
+  0% {background-color: skyblue;}
+  50% {background-color: blue;}
+  100% {background-color: skyblue;}
+}
+
 #current-coords {
   font-size: 20px;
   margin: 0;

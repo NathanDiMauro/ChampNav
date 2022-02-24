@@ -129,8 +129,10 @@ class Indoor extends React.Component {
   testZoom() {
     var currentMap = document.getElementById("interior-map-transform-box");
     var zoomSlider = document.getElementById("myRange");
+    var currentLoc = document.getElementById("interior-curent-loc");
 
     currentMap.style.transform = "scale(" + zoomSlider.value + "%)"
+    currentLoc.style.transform = "scale(" + zoomSlider.value + "%)"
   }
 
   closeInteriorMap() {
@@ -169,9 +171,12 @@ class Indoor extends React.Component {
             </div>
           </div>
 
+          <div id="interior-curent-loc"></div>
+
           <div id="interior-map-transform-box">
             <img id="interior-map" src= {floorplan}/>
           </div>
+
         </div>
         <input type="button" id="moveup" class="button" value="Move Up"></input>
         <input type="button" id="movedown" class="button" value="Move Down"></input>
