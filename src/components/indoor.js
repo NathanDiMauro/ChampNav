@@ -192,7 +192,7 @@ class Indoor extends React.Component {
 
         </header>
 
-        <AstarComponent />
+        {/* <AstarComponent /> */}
       </div>
     );
   }
