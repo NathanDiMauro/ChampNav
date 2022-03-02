@@ -16,6 +16,8 @@ export class MapContainer extends Component {
     destinationLng: null,
     directions: null,
     route: null,
+    currentLat: null,
+    currentLng: null,
   };
 
   getRoute(){
@@ -100,9 +102,17 @@ export class MapContainer extends Component {
        styles: mapStyle
     })
  }
+  
+ componentDidMount() {
+  navigator.geolocation.getCurrentPosition((position) => {
+    this.setState({
+      currentLat: position.coords.latitude,
+      currentLng: position.coords.longitude
+    })
+  })
+}
 
   render() {
-    // console.log("Route:", this.state.route)
     if (this.state.directions != null){
       this.buildRoute();
     }
@@ -119,6 +129,11 @@ export class MapContainer extends Component {
           }
           onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
         >
+          <Marker
+            position={{lat: this.state.currentLat, lng: this.state.currentLng}}
+            onClick={this.onMarkerClick}
+            name="Current Location"
+          />
           <Marker
             position={{lat: locations.CCM.lat, lng: locations.CCM.lng}}
             onClick={this.onMarkerClick}
