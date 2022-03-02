@@ -1,5 +1,5 @@
 import React from 'react';
-import floorplan from '../floorPlans/ccmfloorplansimplified.svg'
+import floorplan from '../floorPlans/ccmNodetest.svg'
 import '../styles/App.css';
 import AstarComponent from './astarComponent.js' 
 
@@ -175,7 +175,12 @@ class Indoor extends React.Component {
           <div id="interior-curent-loc"></div>
 
           <div id="interior-map-transform-box">
-            <img id="interior-map" src= {floorplan}/>
+            <img id="interior-map" usemap="#workmap" src= {floorplan}/>
+            
+            <map id="testMap" name="workmap">
+              <area shape="circle" coords="145.25003,193.66672,3.1576095" alt="Cup of coffee" href="https://coltmagri.com/"/>
+            </map>
+
           </div>
 
         </div>
