@@ -46,17 +46,22 @@ function displayCoords() {
 
 function drawNodes() {
   var mapCanvas = document.getElementById("nodesCanvas");
+  var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
+  var currentMap = document.getElementById("interior-map");
+
+  mapCanvas.width = currentMap.width;
+  mapCanvas.height = currentMap.height;
+  mapCanvasBox.width = currentMap.width;
+  mapCanvasBox.height = currentMap.height;
 
   const c = mapCanvas.getContext('2d')
 
-  c.strokeStyle = 'white'
   c.fillStyle = 'blue'
 
   c.lineWidth = 5
   c.beginPath()
-  c.arc(145.25003, 193.66672, 3.1576095, 0, Math.PI * 2)
+  c.arc(145.25003, 193.66672, 10, 0, Math.PI * 2)
 
-  c.stroke()
   c.fill()
 }
 
@@ -84,9 +89,12 @@ class Indoor extends React.Component {
     currentMap.style.transform = "translate(-30px, -500px)"
 
     var mapCanvas = document.getElementById("nodesCanvas");
+    var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
 
     mapCanvas.width = currentMap.width;
     mapCanvas.height = currentMap.height;
+    mapCanvasBox.width = currentMap.width;
+    mapCanvasBox.height = currentMap.height;
   
     displayCoords()
     drawNodes()
@@ -155,6 +163,8 @@ class Indoor extends React.Component {
 
     currentMap.style.transform = "scale(" + zoomSlider.value + "%)"
     currentLoc.style.transform = "scale(" + zoomSlider.value + "%)"
+
+    drawNodes()
   }
 
   closeInteriorMap() {
