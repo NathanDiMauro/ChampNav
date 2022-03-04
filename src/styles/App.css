@@ -52,6 +52,11 @@
   transform: scale(0.8);
 }
 
+#nodesCanvas-transform-box {
+  z-index: 12;
+  position: absolute;
+}
+
 #interior-curent-loc {
   margin: auto;
   padding: 0;
@@ -207,6 +212,10 @@
   padding-bottom: 10px;
   border-radius: 5px;
   box-shadow: 0px 0px 21px 3px rgba(0,0,0,0.74);
+}
+
+#nodesCanvas {
+  z-index: 12;
 }
 
 /* https://www.w3schools.com/howto/howto_js_rangeslider.asp

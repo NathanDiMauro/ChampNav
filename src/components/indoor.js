@@ -1,5 +1,5 @@
 import React from 'react';
-import floorplan from '../floorPlans/ccmfloorplansimplified.svg'
+import floorplan from '../floorPlans/ccmNodetest.svg'
 import '../styles/App.css';
 import AstarComponent from './astarComponent.js' 
 
@@ -44,6 +44,22 @@ function displayCoords() {
   coordsDisplay.innerText=coordsText
 }
 
+function drawNodes() {
+  var mapCanvas = document.getElementById("nodesCanvas");
+
+  const c = mapCanvas.getContext('2d')
+
+  c.strokeStyle = 'white'
+  c.fillStyle = 'blue'
+
+  c.lineWidth = 5
+  c.beginPath()
+  c.arc(145.25003, 193.66672, 3.1576095, 0, Math.PI * 2)
+
+  c.stroke()
+  c.fill()
+}
+
 class Indoor extends React.Component {
   componentDidMount() {
     this.closeInteriorMap();
@@ -66,8 +82,14 @@ class Indoor extends React.Component {
   
     var currentMap = document.getElementById("interior-map");
     currentMap.style.transform = "translate(-30px, -500px)"
+
+    var mapCanvas = document.getElementById("nodesCanvas");
+
+    mapCanvas.width = currentMap.width;
+    mapCanvas.height = currentMap.height;
   
     displayCoords()
+    drawNodes()
   }
 
   moveUp() {
@@ -175,6 +197,9 @@ class Indoor extends React.Component {
           <div id="interior-curent-loc"></div>
 
           <div id="interior-map-transform-box">
+            <div id="nodesCanvas-transform-box">
+              <canvas id="nodesCanvas" width="400" height="400"></canvas>
+            </div>
             <img id="interior-map" src= {floorplan}/>
           </div>
 
