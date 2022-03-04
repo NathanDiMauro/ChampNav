@@ -4,6 +4,8 @@ import { locations } from "../data/Locations"
 import mapStyle from "../data/mapStyle.json" 
 import axios from 'axios'; 
 import App from './indoor';
+import curMark from '../data/greenPin.png'
+
 
 export class MapContainer extends Component {
   state = {
@@ -16,8 +18,9 @@ export class MapContainer extends Component {
     destinationLng: null,
     directions: null,
     route: null,
-    currentLat: null,
-    currentLng: null,
+    currentLat: 0,
+    currentLng: 0,
+    show: true,
   };
 
   getRoute(){
@@ -102,17 +105,36 @@ export class MapContainer extends Component {
        styles: mapStyle
     })
  }
-  
- componentDidMount() {
+
+ checkStop() {
+   if (this.state.currentLat == this.state.destinationLat && this.state.currentLng == this.state.destinationLng){
+     this.setState({show: true})
+   }
+ }
+
+ getCurrentLocation() {
+  console.log("setting current location")
   navigator.geolocation.getCurrentPosition((position) => {
     this.setState({
       currentLat: position.coords.latitude,
       currentLng: position.coords.longitude
     })
   })
-}
+  this.checkStop();
+ }
+  
+  componentDidMount() {
+    this.getCurrentLocation();
+  }
+
+  showIndoor(){
+    if (this.state.show)
+      return <App />
+    return null
+  }
 
   render() {
+    console.log(this.state.currentLat, this.state.currentLng)
     if (this.state.directions != null){
       this.buildRoute();
     }
@@ -132,6 +154,9 @@ export class MapContainer extends Component {
           <Marker
             position={{lat: this.state.currentLat, lng: this.state.currentLng}}
             onClick={this.onMarkerClick}
+            icon={{
+              url: curMark,
+            }}
             name="Current Location"
           />
           <Marker
@@ -199,7 +224,7 @@ export class MapContainer extends Component {
             strokeOpacity={0.8}
             strokeWeight={2} 
           />
-          <App />
+          {this.showIndoor()}
         </Map>
     );
   }
