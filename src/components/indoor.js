@@ -49,6 +49,8 @@ function drawNodes() {
   var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
   var currentMap = document.getElementById("interior-map");
 
+  var coordsDisplay = document.getElementById("current-coords");
+
   mapCanvas.width = currentMap.width;
   mapCanvas.height = currentMap.height;
   mapCanvasBox.width = currentMap.width;
@@ -63,6 +65,18 @@ function drawNodes() {
   c.arc(145.25003, 193.66672, 10, 0, Math.PI * 2)
 
   c.fill()
+
+  fetch('/ccmNodetest.svg')
+  .then(response => response.text())
+  .then(data => {
+    //PARSE DATA
+    var nodeDataLines = data.split("\n")
+    var nodeDataStart = nodeDataLines.findIndex(element => element.includes("inkscape:label=\"NODES\""))
+    nodeDataLines.splice(0,nodeDataStart)
+    coordsDisplay.innerText = nodeDataLines[0]
+    //PARSE DATA
+    console.log(data);
+  });
 }
 
 class Indoor extends React.Component {
