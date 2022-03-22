@@ -98,7 +98,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.50275378"
      inkscape:cx="622.39642"
-     inkscape:cy="1146.1831"
+     inkscape:cy="569.35999"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      inkscape:document-rotation="0"
@@ -3363,10 +3363,16 @@
      id="layer2"
      inkscape:label="NODES">
     <circle
-       style="fill:#ff0000;stroke-width:2;fill-opacity:0"
+       style="fill:#ff0000;stroke-width:2;fill-opacity:0.00403226"
        id="NODE001"
        cx="145.25003"
        cy="193.66672"
+       r="3.1576095" />
+    <circle
+       style="fill:#ff0000;fill-opacity:0;stroke-width:2"
+       id="NODE001-9"
+       cx="257.87143"
+       cy="202.08699"
        r="3.1576095" />
   </g>
 </svg>
