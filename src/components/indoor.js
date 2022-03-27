@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import floorplan from '../floorPlans/ccmNodetest.svg'
 import '../styles/App.css';
 import AstarComponent from './astarComponent.js' 
 
 var nodesArrayX = [];
 var nodesArrayY = [];
-var testerArray = [];
 
 function getXandY() {
   var currentMap = document.getElementById("interior-map");
@@ -50,45 +49,13 @@ function displayCoords() {
 
 function readNodeData() {
   var coordsDisplay = document.getElementById("current-coords");
-
-  let testDataSet = [];
+  var nodeDataStorage = document.getElementById("nodeData");
 
   fetch('/ccmNodetest.svg')
-  .then(response => response.text())
-  .then(data => {
-
-    testDataSet = data.split("\n")
-    init()
-
-    //PARSE DATA
-    var nodeDataLines = data.split("\n")
-    var nodeDataStart = nodeDataLines.findIndex(element => element.includes("inkscape:label=\"NODES\""))
-    nodeDataLines.splice(0,nodeDataStart)
-    //coordsDisplay.innerText = nodeDataLines[0]
-
-    var nodeDataParseCount = 1
-    while (nodeDataLines[nodeDataParseCount] != "  </g>") {
-      nodeDataParseCount += 3
-      var testingNodesData = nodeDataLines[nodeDataParseCount]
-      testingNodesData = testingNodesData.substring(11)
-      testingNodesData = testingNodesData.slice(0,-1)
-      nodesArrayX.push(testingNodesData)
-
-      nodeDataParseCount += 1
-      testingNodesData = nodeDataLines[nodeDataParseCount]
-      testingNodesData = testingNodesData.substring(11)
-      testingNodesData = testingNodesData.slice(0,-1)
-      nodesArrayY.push(testingNodesData)
-
-      nodeDataParseCount += 2
-    }
-    //PARSE DATA
+  .then(r => r.text())
+  .then(text => {
+    
   });
-
-  function init() {
-    console.log(testDataSet);
-    nodesArrayX[0] = "TESTHELLO"
-  }
 }
 
 function drawNodes() {
@@ -115,6 +82,7 @@ function drawNodes() {
 
 class Indoor extends React.Component {
   componentDidMount() {
+
     this.closeInteriorMap();
     var btnUp = document.getElementById("moveup");
     btnUp.addEventListener("click", this.moveUp)
@@ -149,7 +117,6 @@ class Indoor extends React.Component {
     drawNodes()
 
     var coordsDisplay = document.getElementById("current-coords");
-    coordsDisplay.innerText = nodesArrayX[0]
   }
 
   moveUp() {
@@ -239,6 +206,7 @@ class Indoor extends React.Component {
   render(){
     return (
       <div className="App">
+        <data id="nodeData" value="test"></data>
         <header className="App-header">
 
         <div id="debugOpenIntDisplay">OPEN INTERIOR MAP</div>
