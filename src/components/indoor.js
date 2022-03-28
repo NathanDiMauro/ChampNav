@@ -3,9 +3,6 @@ import floorplan from '../floorPlans/ccmNodetest.svg'
 import '../styles/App.css';
 import AstarComponent from './astarComponent.js' 
 
-var nodesArrayX = [];
-var nodesArrayY = [];
-
 function getXandY() {
   var currentMap = document.getElementById("interior-map");
   var currentTransform = currentMap.style.transform
@@ -49,13 +46,50 @@ function displayCoords() {
 
 function readNodeData() {
   var coordsDisplay = document.getElementById("current-coords");
-  var nodeDataStorage = document.getElementById("nodeData");
+
+  let testDataSet = [];
 
   fetch('/ccmNodetest.svg')
-  .then(r => r.text())
-  .then(text => {
-    
+  .then(response => response.text())
+  .then(data => {
+
+    var nodesArrayX = []
+    var nodesArrayY = []
+    init()
+
+    //PARSE DATA
+    var nodeDataLines = data.split("\n")
+    var nodeDataStart = nodeDataLines.findIndex(element => element.includes("inkscape:label=\"NODES\""))
+    nodeDataLines.splice(0,nodeDataStart)
+
+      var nodeCount = 0;
+
+      nodeDataLines.forEach(element => {
+        if (element === nodeDataLines[1]) {
+          nodeCount += 1;
+        }
+      });
+
+      var testingNodesData = nodeDataLines[4]
+      testingNodesData = testingNodesData.substring(11)
+      testingNodesData = testingNodesData.slice(0,-2)
+      nodesArrayX.push(testingNodesData)
+
+      testingNodesData = nodeDataLines[5]
+      testingNodesData = testingNodesData.substring(11)
+      testingNodesData = testingNodesData.slice(0,-2)
+      nodesArrayY.push(testingNodesData)
+
+    //coordsDisplay.innerText = nodesArrayX[0]
+    //coordsDisplay.innerText = nodeDataLines[10]
+    coordsDisplay.innerText = nodeCount
+    //PARSE DATA
   });
+
+  function init() {
+    console.log(testDataSet);
+  }
+
 }
 
 function drawNodes() {
