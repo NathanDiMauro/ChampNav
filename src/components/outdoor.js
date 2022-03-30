@@ -5,6 +5,7 @@ import mapStyle from "../data/mapStyle.json"
 import axios from 'axios'; 
 import App from './indoor';
 import curMark from '../data/greenPin.png'
+import "../styles/outdoor.css"
 
 
 export class MapContainer extends Component {
@@ -20,10 +21,17 @@ export class MapContainer extends Component {
     route: null,
     currentLat: 0,
     currentLng: 0,
-    show: true,
+    show: false,
   };
 
-  getRoute(){
+  constructor(props) {
+    super(props);
+    this.setRoute = this.setRoute.bind(this)
+  }
+
+  getRoute() {
+    console.log('dlat', this.state.destinationLat)
+    console.log('dlng', this.state.destinationLng)
     axios.get(`https://maps.googleapis.com/maps/api/directions/json?destination="`+this.state.destinationLat+`,`+this.state.destinationLng+`"&origin="`+this.state.originLat+`,`+this.state.originLng+`"&mode=walking&key=AIzaSyBtX-ubyw8TF5OeJUcP_YccaTEI9eDs3Og`)
       .then(res =>
         this.setState({
@@ -55,6 +63,7 @@ export class MapContainer extends Component {
         destinationLat: null,
         destinationLng: null,
         route: null,
+        show: false,
       })
     }
     if (this.state.originLat == null){
@@ -67,6 +76,7 @@ export class MapContainer extends Component {
       this.setState({
         destinationLat: parseFloat(props.position.lat),
         destinationLng: parseFloat(props.position.lng),
+        show: true
       })
       this.getRoute()
     }
@@ -87,6 +97,7 @@ export class MapContainer extends Component {
         destinationLat: null,
         destinationLng: null,
         route: null,
+        show: false,
       })
     }
     if (this.state.showingInfoWindow) {
@@ -133,14 +144,97 @@ export class MapContainer extends Component {
     return null
   }
 
+  setRoute() {
+    let destination = document.getElementById("building").value;
+    let roomNum = document.getElementById("roomNum").value;
+    var dLat, dLng;
+
+    switch (destination) {
+      case 'CCM':
+        dLat = locations.CCM.lat;
+        dLng = locations.CCM.lng;
+        break;
+      case 'Perry':
+        dLat = locations.Perry.lat;
+        dLng = locations.Perry.lng;
+        break;
+      case 'Ireland':
+          dLat = locations.Ireland.lat;
+          dLng = locations.Ireland.lng;
+          break;
+      case 'Joyce':
+        dLat = locations.Joyce.lat;
+        dLng = locations.Joyce.lng;
+        break;
+      case 'Freeman':
+        dLat = locations.Freeman.lat;
+        dLng = locations.Freeman.lng;
+        break;
+      case 'IDX':
+        dLat = locations.IDX.lat;
+        dLng = locations.IDX.lng;
+        break;
+      case 'Foster':
+        dLat = locations.Foster.lat;
+        dLng = locations.Foster.lng;
+        break;
+      case 'MIC':
+        dLat = locations.MIC.lat;
+        dLng = locations.MIC.lng;
+        break;
+      case 'Aiken':
+        dLat = locations.Aiken.lat;
+        dLng = locations.Aiken.lng;
+        break;
+      case 'West':
+        dLat = locations.West.lat;
+        dLng = locations.West.lng;
+        break;
+    }
+    
+    console.log('dlat1', dLat)
+    console.log('dlng1', dLng)
+    this.setState({
+      originLat: this.state.currentLat,
+      originLng: this.state.currentLng,
+      destinationLat: parseFloat(dLat),
+      destinationLng: parseFloat(dLng),
+      show: true
+    }, this.getRoute )
+  }
+
+  showRouteMenu() {
+    if (!this.state.show)
+      return( 
+      <div id="input">
+        <select name="building" id="building">
+          <option value="none" selected disabled hidden></option>
+          <option value="CCM">CCM</option>
+          <option value="Perry">Perry</option>
+          <option value="Ireland">Ireland</option>
+          <option value="Joyce">Joyce</option>
+          <option value="Freeman">Freeman</option>
+          <option value="IDX">IDX</option>
+          <option value="MIC">MIC</option>
+          <option value="Aiken">Aiken</option>
+          <option value="West">West</option>
+        </select>
+
+        <input id="roomNum"></input>
+        <button id="routeButton" onClick={this.setRoute}>Route</button>
+      </div>)
+    return null
+  }
+
   render() {
     console.log(this.state.currentLat, this.state.currentLng)
     if (this.state.directions != null){
       this.buildRoute();
     }
     return (
+      <div>
         <Map
-          id="58f3d0b518e303d3"
+          id="map"
           google={this.props.google}
           zoom={18.45}
           initialCenter={
@@ -225,7 +319,9 @@ export class MapContainer extends Component {
             strokeWeight={2} 
           />
           {this.showIndoor()}
+          {this.showRouteMenu()}
         </Map>
+      </div>
     );
   }
 }
