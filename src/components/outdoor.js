@@ -19,6 +19,7 @@ export class MapContainer extends Component {
     destinationLng: null,
     directions: null,
     route: null,
+    room: null,
     currentLat: 0,
     currentLng: 0,
     show: false,
@@ -199,6 +200,7 @@ export class MapContainer extends Component {
       originLng: this.state.currentLng,
       destinationLat: parseFloat(dLat),
       destinationLng: parseFloat(dLng),
+      room: roomNum,
       show: true
     }, this.getRoute )
   }
