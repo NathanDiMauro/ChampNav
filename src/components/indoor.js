@@ -243,7 +243,10 @@ class Indoor extends React.Component {
         <data id="nodeData" value="test"></data>
         <header className="App-header">
 
-        <div id="debugOpenIntDisplay">OPEN INTERIOR MAP</div>
+        <div id="options">
+          <div id="debugOpenIntDisplay">OPEN INTERIOR MAP</div>
+          <button id="closeButton" onClick={this.props.onCloseHandler}>Clear</button>
+        </div>
 
         <div id="interior-map-container">
 

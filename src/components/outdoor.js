@@ -142,9 +142,7 @@ export class MapContainer extends Component {
 
   showIndoor(){
     if (this.state.show)
-      return <div>
-          <App />
-        </div>
+      return <App onCloseHandler={this.onCloseHandler}/>
     return null
   }
 
@@ -227,7 +225,6 @@ export class MapContainer extends Component {
 
         <input id="roomNum"></input>
         <button id="routeButton" onClick={this.setRoute}>Route</button>
-        <button id="closeButton" onClick={this.onCloseHandler}>Close</button>
       </div>)
     return null
   }

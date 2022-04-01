@@ -265,3 +265,10 @@ Followed above tutorial, code is altered
   background: lightblue; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
+
+#options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
