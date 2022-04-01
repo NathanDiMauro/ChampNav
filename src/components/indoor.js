@@ -45,9 +45,6 @@ function displayCoords() {
 }
 
 function readNodeData() {
-  var coordsDisplay = document.getElementById("current-coords");
-
-  let testDataSet = [];
 
   fetch('/ccmNodetest.svg')
   .then(response => response.text())
@@ -62,32 +59,58 @@ function readNodeData() {
     var nodeDataStart = nodeDataLines.findIndex(element => element.includes("inkscape:label=\"NODES\""))
     nodeDataLines.splice(0,nodeDataStart)
 
-      var nodeCount = 0;
+    var nodeCount = 0;
 
-      nodeDataLines.forEach(element => {
-        if (element === nodeDataLines[1]) {
-          nodeCount += 1;
-        }
-      });
+    nodeDataLines.forEach(element => {
+      if (element === nodeDataLines[1]) {
+        nodeCount += 1;
+      }
+    });
 
-      var testingNodesData = nodeDataLines[4]
-      testingNodesData = testingNodesData.substring(11)
-      testingNodesData = testingNodesData.slice(0,-2)
-      nodesArrayX.push(testingNodesData)
+    var parseLineCount = 1
+    nodeDataLines.forEach(element => {
+      if (element === nodeDataLines[1]) {
+        var tempXCoord = ""
+        tempXCoord = nodeDataLines[parseLineCount + 3]
+        tempXCoord = tempXCoord.substring(11)
+        tempXCoord = tempXCoord.slice(0,-2)
+        nodesArrayX.push(tempXCoord)
 
-      testingNodesData = nodeDataLines[5]
-      testingNodesData = testingNodesData.substring(11)
-      testingNodesData = testingNodesData.slice(0,-2)
-      nodesArrayY.push(testingNodesData)
-
-    //coordsDisplay.innerText = nodesArrayX[0]
-    //coordsDisplay.innerText = nodeDataLines[10]
-    coordsDisplay.innerText = nodeCount
+        var tempYCoord = ""
+        tempYCoord = nodeDataLines[parseLineCount + 4]
+        tempYCoord = tempYCoord.substring(11)
+        tempYCoord = tempYCoord.slice(0,-2)
+        nodesArrayY.push(tempYCoord)
+        parseLineCount += 6
+      }
+    });
     //PARSE DATA
+
+    var mapCanvas = document.getElementById("nodesCanvas");
+    var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
+    var currentMap = document.getElementById("interior-map");
+  
+    mapCanvas.width = currentMap.width;
+    mapCanvas.height = currentMap.height;
+    mapCanvasBox.width = currentMap.width;
+    mapCanvasBox.height = currentMap.height;
+  
+    const c = mapCanvas.getContext('2d')
+
+    for (let i = 0; i < nodeCount; i++) {
+
+      c.fillStyle = 'blue'
+
+      c.lineWidth = 5
+      c.beginPath()
+      c.arc(nodesArrayX[i], nodesArrayY[i], 10, 0, Math.PI * 2)
+    
+      c.fill()
+    }
+
   });
 
   function init() {
-    console.log(testDataSet);
   }
 
 }
@@ -148,9 +171,7 @@ class Indoor extends React.Component {
 
     displayCoords()
     readNodeData()
-    drawNodes()
-
-    var coordsDisplay = document.getElementById("current-coords");
+    //drawNodes()
   }
 
   moveUp() {
