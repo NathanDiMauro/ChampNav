@@ -28,6 +28,7 @@ export class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.setRoute = this.setRoute.bind(this)
+    this.onCloseHandler = this.onCloseHandler.bind(this)
   }
 
   getRoute() {
@@ -141,7 +142,9 @@ export class MapContainer extends Component {
 
   showIndoor(){
     if (this.state.show)
-      return <App />
+      return <div>
+          <App />
+        </div>
     return null
   }
 
@@ -224,6 +227,7 @@ export class MapContainer extends Component {
 
         <input id="roomNum"></input>
         <button id="routeButton" onClick={this.setRoute}>Route</button>
+        <button id="closeButton" onClick={this.onCloseHandler}>Close</button>
       </div>)
     return null
   }
