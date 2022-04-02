@@ -1,7 +1,48 @@
 import React, { useState } from 'react';
-import floorplan from '../floorPlans/ccmNodetest.svg'
 import '../styles/App.css';
 import AstarComponent from './astarComponent.js' 
+
+// floor plan imports
+// CCM
+import CCM1 from '../floorPlans/CCM/A1-CCM.svg'
+import CCM2 from '../floorPlans/CCM/A2-CCM.svg'
+import CCM3 from '../floorPlans/ccmNodetest.svg'
+import CCM4 from '../floorPlans/CCM/A4-CCM.svg'
+import CCM5 from '../floorPlans/CCM/A5-CCM.svg'
+import CCM6 from '../floorPlans/CCM/A6-CCM.svg'
+//Aiken
+import Aiken1 from '../floorPlans/Aiken/A1-Aiken.svg'
+import Aiken2 from '../floorPlans/Aiken/A1-Aiken.svg'
+//Freeman
+import Freeman1 from '../floorPlans/Freeman/A1-Freeman Hall.svg'
+import Freeman2 from '../floorPlans/Freeman/A2-Freeman Hall.svg'
+import Freeman3 from '../floorPlans/Freeman/A3-Freeman Hall.svg'
+//IDX
+import IDX1 from '../floorPlans/IDX/A1-SLCenter.svg'
+import IDX2 from '../floorPlans/IDX/A2-SLCenter.svg'
+import IDX3 from '../floorPlans/IDX/A3-SLCenter.svg'
+//Ireland
+import Ireland1 from '../floorPlans/Ireland/A1-SDIreland.svg'
+import Ireland2 from '../floorPlans/Ireland/A2-SDIreland.svg'
+import Ireland3 from '../floorPlans/Ireland/A3-SDIreland.svg'
+//Joyce
+import Joyce1 from '../floorPlans/Joyce/A1-Joyce.svg'
+import Joyce2 from '../floorPlans/Joyce/A2-Joyce.svg'
+import Joyce3 from '../floorPlans/Joyce/A3-Joyce.svg'
+//MIC
+import MIC1 from '../floorPlans/MIC/A1-Miller.svg'
+import MIC2 from '../floorPlans/MIC/A2-Miller.svg'
+import MIC3 from '../floorPlans/MIC/A3-Miller.svg'
+import MIC4 from '../floorPlans/MIC/A4-Miller.svg'
+import MIC5 from '../floorPlans/MIC/A5-Miller.svg'
+//Perry
+import Perry1 from '../floorPlans/Perry/A1-Perry.svg'
+import Perry2 from '../floorPlans/Perry/A2-Perry.svg'
+import Perry3 from '../floorPlans/Perry/A3-Perry.svg'
+//West
+import West1 from '../floorPlans/West/A1-West.svg'
+import West2 from '../floorPlans/West/A2-West.svg'
+import West3 from '../floorPlans/West/A3-West.svg'
 
 function getXandY() {
   var currentMap = document.getElementById("interior-map");
@@ -138,6 +179,16 @@ function drawNodes() {
 }
 
 class Indoor extends React.Component {
+
+  state = {
+    displayedFloor: null
+  };
+
+  constructor(props) {
+    super(props);
+    this.changeFloor = this.changeFloor.bind(this)
+  }
+
   componentDidMount() {
 
     this.closeInteriorMap();
@@ -259,15 +310,117 @@ class Indoor extends React.Component {
   }
 
   changeFloor() {
-    console.log("changed floor")
+    console.log("Building", this.props.building)
+    switch(this.props.building) {
+      case "Aiken":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: Aiken1}); break;
+          case 2: this.setState({displayedFloor: Aiken2}); break;
+        }
+      break;
+      case "CCM":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: CCM1}); break;
+          case 2: this.setState({displayedFloor: CCM2}); break;
+          case 3: this.setState({displayedFloor: CCM3}); break;
+          case 4: this.setState({displayedFloor: CCM4}); break;
+          case 5: this.setState({displayedFloor: CCM5}); break;
+          case 6: this.setState({displayedFloor: CCM6}); break;
+        }
+      break;
+      case "Freeman":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: Freeman1}); break;
+          case 2: this.setState({displayedFloor: Freeman2}); break;
+          case 3: this.setState({displayedFloor: Freeman3}); break;
+        }
+      break;
+      case "IDX":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: IDX1}); break;
+          case 2: this.setState({displayedFloor: IDX2}); break;
+          case 3: this.setState({displayedFloor: IDX3}); break;
+        }
+      break
+      case "Ireland":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: Ireland1}); break;
+          case 2: this.setState({displayedFloor: Ireland2}); break;
+          case 3: this.setState({displayedFloor: Ireland3}); break;
+        }
+      break
+      case "Joyce":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: Joyce1}); break;
+          case 2: this.setState({displayedFloor: Joyce2}); break;
+          case 3: this.setState({displayedFloor: Joyce3}); break;
+        }
+      break
+      case "MIC":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: MIC1}); break;
+          case 2: this.setState({displayedFloor: MIC2}); break;
+          case 3: this.setState({displayedFloor: MIC3}); break;
+          case 3: this.setState({displayedFloor: MIC4}); break;
+          case 3: this.setState({displayedFloor: MIC5}); break;
+        }
+      break
+      case "Perry":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: Perry1}); break;
+          case 2: this.setState({displayedFloor: Perry2}); break;
+          case 3: this.setState({displayedFloor: Perry3}); break;
+        }
+      break
+      case "West":
+        switch(parseInt(document.getElementById("interior-title").value)){
+          case 1: this.setState({displayedFloor: West1}); break;
+          case 2: this.setState({displayedFloor: West2}); break;
+          case 3: this.setState({displayedFloor: West3}); break;
+        }
+      break
+    }  
   }
 
   showDropdown() {
-    return(<select id="interior-title" onChange={this.changeFloor}>
-      <option value="1">{this.props.building} Floor 1</option>
-      <option value="2">{this.props.building} Floor 2</option>
-      <option value="3">{this.props.building} Floor 3</option>
-    </select>)
+    switch(this.props.building){
+      case "Aiken":
+      case "Foster":
+        return(<select id="interior-title" onChange={this.changeFloor}>
+          <option value="none" selected disabled hidden></option>
+          <option value="1">{this.props.building} Floor 1</option>
+          <option value="2">{this.props.building} Floor 2</option>
+        </select>)
+        break;
+      case "MIC":
+        return(<select id="interior-title" onChange={this.changeFloor}>
+          <option value="none" selected disabled hidden></option>
+          <option value="1">{this.props.building} Floor 1</option>
+          <option value="2">{this.props.building} Floor 2</option>
+          <option value="3">{this.props.building} Floor 3</option>
+          <option value="4">{this.props.building} Floor 4</option>
+          <option value="5">{this.props.building} Floor 5</option>
+        </select>)
+        break;
+      case "CCM":
+        return(<select id="interior-title" onChange={this.changeFloor}>
+          <option value="none" selected disabled hidden></option>
+          <option value="1">{this.props.building} Floor 1</option>
+          <option value="2">{this.props.building} Floor 2</option>
+          <option value="3">{this.props.building} Floor 3</option>
+          <option value="4">{this.props.building} Floor 4</option>
+          <option value="5">{this.props.building} Floor 5</option>
+          <option value="6">{this.props.building} Floor 6</option>
+        </select>)
+        break;
+      default: 
+        return(<select id="interior-title" onChange={this.changeFloor}>
+          <option value="none" selected disabled hidden></option>
+          <option value="1">{this.props.building} Floor 1</option>
+          <option value="2">{this.props.building} Floor 2</option>
+          <option value="3">{this.props.building} Floor 3</option>
+        </select>)
+    }
   }
 
   render(){
@@ -300,7 +453,7 @@ class Indoor extends React.Component {
             <div id="nodesCanvas-transform-box">
               <canvas id="nodesCanvas" width="400" height="400"></canvas>
             </div>
-            <img id="interior-map" src= {floorplan}/>
+            <img id="interior-map" src= {this.state.displayedFloor}/>
           </div>
 
         </div>
