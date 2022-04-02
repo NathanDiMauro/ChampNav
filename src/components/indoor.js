@@ -258,6 +258,18 @@ class Indoor extends React.Component {
     showDisplay.style.visibility = "hidden"
   }
 
+  changeFloor() {
+    console.log("changed floor")
+  }
+
+  showDropdown() {
+    return(<select id="interior-title" onChange={this.changeFloor}>
+      <option value="1">{this.props.building} Floor 1</option>
+      <option value="2">{this.props.building} Floor 2</option>
+      <option value="3">{this.props.building} Floor 3</option>
+    </select>)
+  }
+
   render(){
     return (
       <div className="App">
@@ -281,11 +293,7 @@ class Indoor extends React.Component {
             </div>
           </div>
 
-          <select name="building" id="interior-title">
-            <option value="1">{this.props.building} Floor 1</option>
-            <option value="2">{this.props.building}  Floor 2</option>
-            <option value="3">{this.props.building}  Floor 3</option>
-          </select>
+          {this.showDropdown()}
           <div id="interior-curent-loc"></div>
 
           <div id="interior-map-transform-box">
