@@ -281,7 +281,11 @@ class Indoor extends React.Component {
             </div>
           </div>
 
-          <div id="interior-title">CCM Floor 2</div>
+          <select name="building" id="interior-title">
+            <option value="1">{this.props.building} Floor 1</option>
+            <option value="2">{this.props.building}  Floor 2</option>
+            <option value="3">{this.props.building}  Floor 3</option>
+          </select>
           <div id="interior-curent-loc"></div>
 
           <div id="interior-map-transform-box">

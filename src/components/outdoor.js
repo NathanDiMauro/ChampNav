@@ -20,6 +20,7 @@ export class MapContainer extends Component {
     directions: null,
     route: null,
     room: null,
+    building: null,
     currentLat: 0,
     currentLng: 0,
     show: false,
@@ -142,7 +143,7 @@ export class MapContainer extends Component {
 
   showIndoor(){
     if (this.state.show)
-      return <App onCloseHandler={this.onCloseHandler}/>
+      return <App onCloseHandler={this.onCloseHandler} building={this.state.building}/>
     return null
   }
 
@@ -202,6 +203,7 @@ export class MapContainer extends Component {
       destinationLat: parseFloat(dLat),
       destinationLng: parseFloat(dLng),
       room: roomNum,
+      building: destination,
       show: true
     }, this.getRoute )
   }
