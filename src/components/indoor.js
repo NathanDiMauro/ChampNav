@@ -289,6 +289,7 @@ class Indoor extends React.Component {
           nodesArrayY.push(tempYCoord)
           parseLineCount += 6
         }
+
       });
       //PARSE DATA
   
