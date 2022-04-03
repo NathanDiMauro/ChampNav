@@ -3363,7 +3363,7 @@
      id="layer2"
      inkscape:label="NODES">
     <circle
-       style="fill:#ff0000;stroke-width:2;fill-opacity:0.00403226"
+       style="fill:#ff0000;stroke-width:2;fill-opacity:0"
        id="NODE001"
        cx="145.25003"
        cy="193.66672"
@@ -3371,8 +3371,8 @@
     <circle
        style="fill:#ff0000;fill-opacity:0;stroke-width:2"
        id="NODE001-9"
-       cx="257.87143"
-       cy="202.08699"
+       cx="168.9321"
+       cy="195.77177"
        r="3.1576095" />
   </g>
 </svg>

@@ -85,77 +85,6 @@ function displayCoords() {
   coordsDisplay.innerText=coordsText
 }
 
-function readNodeData() {
-
-  fetch('/ccmNodetest.svg')
-  .then(response => response.text())
-  .then(data => {
-
-    var nodesArrayX = []
-    var nodesArrayY = []
-    init()
-
-    //PARSE DATA
-    var nodeDataLines = data.split("\n")
-    var nodeDataStart = nodeDataLines.findIndex(element => element.includes("inkscape:label=\"NODES\""))
-    nodeDataLines.splice(0,nodeDataStart)
-
-    var nodeCount = 0;
-
-    nodeDataLines.forEach(element => {
-      if (element === nodeDataLines[1]) {
-        nodeCount += 1;
-      }
-    });
-
-    var parseLineCount = 1
-    nodeDataLines.forEach(element => {
-      if (element === nodeDataLines[1]) {
-        var tempXCoord = ""
-        tempXCoord = nodeDataLines[parseLineCount + 3]
-        tempXCoord = tempXCoord.substring(11)
-        tempXCoord = tempXCoord.slice(0,-2)
-        nodesArrayX.push(tempXCoord)
-
-        var tempYCoord = ""
-        tempYCoord = nodeDataLines[parseLineCount + 4]
-        tempYCoord = tempYCoord.substring(11)
-        tempYCoord = tempYCoord.slice(0,-2)
-        nodesArrayY.push(tempYCoord)
-        parseLineCount += 6
-      }
-    });
-    //PARSE DATA
-
-    var mapCanvas = document.getElementById("nodesCanvas");
-    var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
-    var currentMap = document.getElementById("interior-map");
-  
-    mapCanvas.width = currentMap.width;
-    mapCanvas.height = currentMap.height;
-    mapCanvasBox.width = currentMap.width;
-    mapCanvasBox.height = currentMap.height;
-  
-    const c = mapCanvas.getContext('2d')
-
-    for (let i = 0; i < nodeCount; i++) {
-
-      c.fillStyle = 'blue'
-
-      c.lineWidth = 5
-      c.beginPath()
-      c.arc(nodesArrayX[i], nodesArrayY[i], 10, 0, Math.PI * 2)
-    
-      c.fill()
-    }
-
-  });
-
-  function init() {
-  }
-
-}
-
 function drawNodes() {
 
   var mapCanvas = document.getElementById("nodesCanvas");
@@ -181,12 +110,15 @@ function drawNodes() {
 class Indoor extends React.Component {
 
   state = {
-    displayedFloor: null
+    displayedFloor: null,
+    nodeXCoords: [],
+    nodeYCoords: []
   };
 
   constructor(props) {
     super(props);
     this.changeFloor = this.changeFloor.bind(this)
+    this.readNodeData = this.readNodeData.bind(this)
   }
 
   componentDidMount() {
@@ -221,8 +153,8 @@ class Indoor extends React.Component {
     mapCanvasBox.height = currentMap.height;
 
     displayCoords()
-    readNodeData()
-    //drawNodes()
+    drawNodes()
+    this.readNodeData()
   }
 
   moveUp() {
@@ -307,6 +239,69 @@ class Indoor extends React.Component {
 
     interiorDisplay.style.visibility = "visible"
     showDisplay.style.visibility = "hidden"
+  }
+
+  readNodeData() {
+
+    var mapCanvas = document.getElementById("nodesCanvas");
+    var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
+    var currentMap = document.getElementById("interior-map");
+
+    mapCanvas.width = currentMap.width;
+    mapCanvas.height = currentMap.height;
+    mapCanvasBox.width = currentMap.width;
+    mapCanvasBox.height = currentMap.height;
+
+    fetch('/ccmNodetest.svg')
+    .then(response => response.text())
+    .then(data => {
+  
+      var nodesArrayX = []
+      var nodesArrayY = []
+      init()
+  
+      //PARSE DATA
+      var nodeDataLines = data.split("\n")
+      var nodeDataStart = nodeDataLines.findIndex(element => element.includes("inkscape:label=\"NODES\""))
+      nodeDataLines.splice(0,nodeDataStart)
+  
+      var nodeCount = 0;
+  
+      nodeDataLines.forEach(element => {
+        if (element === nodeDataLines[1]) {
+          nodeCount += 1;
+        }
+      });
+  
+      var parseLineCount = 1
+      nodeDataLines.forEach(element => {
+        if (element === nodeDataLines[1]) {
+          var tempXCoord = ""
+          tempXCoord = nodeDataLines[parseLineCount + 3]
+          tempXCoord = tempXCoord.substring(11)
+          tempXCoord = tempXCoord.slice(0,-2)
+          nodesArrayX.push(tempXCoord)
+  
+          var tempYCoord = ""
+          tempYCoord = nodeDataLines[parseLineCount + 4]
+          tempYCoord = tempYCoord.substring(11)
+          tempYCoord = tempYCoord.slice(0,-2)
+          nodesArrayY.push(tempYCoord)
+          parseLineCount += 6
+        }
+      });
+      //PARSE DATA
+  
+      this.setState({
+        nodeXCoords: nodesArrayX,
+        nodeYCoords: nodesArrayY
+      })
+  
+    });
+  
+    function init() {
+    }
+  
   }
 
   changeFloor() {
