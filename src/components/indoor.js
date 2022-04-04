@@ -111,6 +111,7 @@ class Indoor extends React.Component {
 
   state = {
     displayedFloor: null,
+    count: 0,
     nodeXCoords: [],
     nodeYCoords: []
   };
@@ -119,6 +120,7 @@ class Indoor extends React.Component {
     super(props);
     this.changeFloor = this.changeFloor.bind(this)
     this.readNodeData = this.readNodeData.bind(this)
+    
   }
 
   componentDidMount() {
@@ -379,18 +381,32 @@ class Indoor extends React.Component {
   }
 
   showDropdown() {
+    console.log(this.props.building);
+    if (this.state.count == 0) { 
+      switch(this.props.building) {
+        case "CCM": this.setState({displayedFloor: CCM1}); break;
+        case "Aiken": this.setState({displayedFloor: Aiken1}); break;
+        case "Freeman": this.setState({displayedFloor: Freeman1}); break;
+        case "IDX": this.setState({displayedFloor: IDX1}); break;
+        case "Ireland": this.setState({displayedFloor: Ireland1}); break;
+        case "Joyce": this.setState({displayedFloor: Joyce1}); break;
+        case "MIC": this.setState({displayedFloor: MIC1}); break;
+        case "Perry": this.setState({displayedFloor: Perry1}); break;
+        case "West": this.setState({displayedFloor: West1}); break;
+      }
+      this.setState({count: 1});
+    }
+
     switch(this.props.building){
       case "Aiken":
       case "Foster":
         return(<select id="interior-title" onChange={this.changeFloor}>
-          <option value="none" selected disabled hidden></option>
           <option value="1">{this.props.building} Floor 1</option>
           <option value="2">{this.props.building} Floor 2</option>
         </select>)
         break;
       case "MIC":
         return(<select id="interior-title" onChange={this.changeFloor}>
-          <option value="none" selected disabled hidden></option>
           <option value="1">{this.props.building} Floor 1</option>
           <option value="2">{this.props.building} Floor 2</option>
           <option value="3">{this.props.building} Floor 3</option>
@@ -400,7 +416,6 @@ class Indoor extends React.Component {
         break;
       case "CCM":
         return(<select id="interior-title" onChange={this.changeFloor}>
-          <option value="none" selected disabled hidden></option>
           <option value="1">{this.props.building} Floor 1</option>
           <option value="2">{this.props.building} Floor 2</option>
           <option value="3">{this.props.building} Floor 3</option>
@@ -411,7 +426,6 @@ class Indoor extends React.Component {
         break;
       default: 
         return(<select id="interior-title" onChange={this.changeFloor}>
-          <option value="none" selected disabled hidden></option>
           <option value="1">{this.props.building} Floor 1</option>
           <option value="2">{this.props.building} Floor 2</option>
           <option value="3">{this.props.building} Floor 3</option>
