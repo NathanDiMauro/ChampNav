@@ -253,6 +253,9 @@ class Indoor extends React.Component {
     showDisplay.style.visibility = "hidden"
 
     this.readNodeData()
+    console.log("CANVAS DATA:")
+    console.log("Canvas W: " + mapCanvas.width + " H: " + mapCanvas.height)
+    console.log("Map W: " + currentMap.width + " H: " + currentMap.height)
   }
 
   readNodeData() {
@@ -312,9 +315,9 @@ class Indoor extends React.Component {
     
         c.fillStyle = 'blue'
       
-        c.lineWidth = 5
+        c.lineWidth = 1
         c.beginPath()
-        c.arc(nodesArrayX[i], nodesArrayY[i], 10, 0, Math.PI * 2)
+        c.arc(nodesArrayX[i], nodesArrayY[i], 3, 0, Math.PI * 2)
       
         c.fill()
       }

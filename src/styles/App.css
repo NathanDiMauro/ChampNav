@@ -48,11 +48,13 @@
 }
 
 #interior-map-transform-box {
+  margin: 0;
   transform-origin: center;
   transform: scale(0.8);
 }
 
 #nodesCanvas-transform-box {
+  margin: 0;
   z-index: 12;
   position: absolute;
 }
