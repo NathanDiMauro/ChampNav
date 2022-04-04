@@ -120,6 +120,7 @@ class Indoor extends React.Component {
     super(props);
     this.changeFloor = this.changeFloor.bind(this)
     this.readNodeData = this.readNodeData.bind(this)
+    this.openInteriorMap = this.openInteriorMap.bind(this)
     
   }
 
@@ -155,7 +156,7 @@ class Indoor extends React.Component {
     mapCanvasBox.height = currentMap.height;
 
     displayCoords()
-    drawNodes()
+    //drawNodes()
     this.readNodeData()
   }
 
@@ -223,7 +224,7 @@ class Indoor extends React.Component {
     currentMap.style.transform = "scale(" + zoomSlider.value + "%)"
     currentLoc.style.transform = "scale(" + zoomSlider.value + "%)"
 
-    drawNodes()
+    //drawNodes()
   }
 
   closeInteriorMap() {
@@ -239,8 +240,19 @@ class Indoor extends React.Component {
     var interiorDisplay = document.getElementById("interior-map-container");
     var showDisplay = document.getElementById("debugOpenIntDisplay");
 
+    var mapCanvas = document.getElementById("nodesCanvas");
+    var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
+    var currentMap = document.getElementById("interior-map");
+  
+    mapCanvas.width = currentMap.width;
+    mapCanvas.height = currentMap.height;
+    mapCanvasBox.width = currentMap.width;
+    mapCanvasBox.height = currentMap.height;
+
     interiorDisplay.style.visibility = "visible"
     showDisplay.style.visibility = "hidden"
+
+    this.readNodeData()
   }
 
   readNodeData() {
@@ -294,6 +306,18 @@ class Indoor extends React.Component {
 
       });
       //PARSE DATA
+
+      for (let i = 0; i < nodeCount; i++) {
+        const c = mapCanvas.getContext('2d')
+    
+        c.fillStyle = 'blue'
+      
+        c.lineWidth = 5
+        c.beginPath()
+        c.arc(nodesArrayX[i], nodesArrayY[i], 10, 0, Math.PI * 2)
+      
+        c.fill()
+      }
   
       this.setState({
         nodeXCoords: nodesArrayX,
