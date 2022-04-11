@@ -317,7 +317,7 @@ class Indoor extends React.Component {
       
         c.lineWidth = 1
         c.beginPath()
-        c.arc(nodesArrayX[i], nodesArrayY[i], 3, 0, Math.PI * 2)
+        c.arc(nodesArrayX[i], nodesArrayY[i], 10, 0, Math.PI * 2)
       
         c.fill()
       }
