@@ -275,6 +275,7 @@ class Indoor extends React.Component {
   
       var nodesArrayX = []
       var nodesArrayY = []
+      var nodesArrayPaths = []
       init()
   
       //PARSE DATA
@@ -306,7 +307,19 @@ class Indoor extends React.Component {
           nodesArrayY.push(tempYCoord)
           parseLineCount += 6
         }
+      });
 
+      parseLineCount = 1
+      nodeDataLines.forEach(element => {
+        if (element === nodeDataLines[1]) {
+          var tempPath = ""
+          tempPath = nodeDataLines[parseLineCount + 2]
+          tempPath = tempPath.substring(11)
+          tempPath = tempPath.slice(0,-1)
+          nodesArrayPaths.push(tempPath)
+
+          parseLineCount += 6
+        }
       });
       //PARSE DATA
 
@@ -320,6 +333,28 @@ class Indoor extends React.Component {
         c.arc(nodesArrayX[i], nodesArrayY[i], 5, 0, Math.PI * 2)
       
         c.fill()
+      }
+
+      //Draw Paths
+      for (let i = 0; i < nodeCount; i++) {
+        var currentPath = nodesArrayPaths[i]
+        var pathStartID = currentPath.split("-")[0]
+        var pathConnections = currentPath.split("-").length - 1;
+        var connectingNodes = []
+        var pathParse = 0
+        for (let i = 0; i < pathConnections; i++) {
+          pathParse += 2
+          connectingNodes.push(currentPath.charAt(pathParse))
+        }
+
+        for (let i = 0; i < pathConnections; i++) {
+          const c = mapCanvas.getContext('2d')
+          c.beginPath()
+          c.moveTo(nodesArrayX[pathStartID], nodesArrayY[pathStartID]);
+          c.lineTo(nodesArrayX[connectingNodes[i]], nodesArrayY[connectingNodes[i]])
+          c.closePath()
+          c.stroke()
+        }
       }
   
       this.setState({
@@ -479,7 +514,7 @@ class Indoor extends React.Component {
 
           <div id="slider-container">
             <div class="slidecontainer">
-              <input type="range" min="50" max="200" defaultValue="100" class="slider" id="myRange"/>
+              <input type="range" min="2" max="200" defaultValue="100" class="slider" id="myRange"/>
             </div>
           </div>
 
