@@ -259,7 +259,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -4612,9 +4612,15 @@
      inkscape:label="NODES">
     <circle
        style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
-       id="3-2-4"
-       cx="573.21185"
-       cy="307.24548"
+       id="0-1"
+       cx="625.54327"
+       cy="1256.5103"
+       r="6.6145835" />
+    <circle
+       style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
+       id="1-0-2"
+       cx="625.54327"
+       cy="795.48846"
        r="6.6145835" />
     <circle
        style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
@@ -4624,8 +4630,14 @@
        r="6.6145835" />
     <circle
        style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
-       id="6-4"
-       cx="819.30322"
+       id="3-2-4"
+       cx="573.21185"
+       cy="307.24548"
+       r="6.6145835" />
+    <circle
+       style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
+       id="4-3-5-6"
+       cx="573.21185"
        cy="263.59009"
        r="6.6145835" />
     <circle
@@ -4636,21 +4648,9 @@
        r="6.6145835" />
     <circle
        style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
-       id="4-3-5-6"
-       cx="573.21185"
+       id="6-4"
+       cx="819.30322"
        cy="263.59009"
-       r="6.6145835" />
-    <circle
-       style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
-       id="1-0-2"
-       cx="625.54327"
-       cy="795.48846"
-       r="6.6145835" />
-    <circle
-       style="fill:#ff0000;fill-opacity:1;stroke-width:4.18961"
-       id="0-1"
-       cx="625.54327"
-       cy="1256.5103"
        r="6.6145835" />
   </g>
 </svg>

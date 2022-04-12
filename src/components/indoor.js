@@ -321,6 +321,7 @@ class Indoor extends React.Component {
           parseLineCount += 6
         }
       });
+
       //PARSE DATA
 
       for (let i = 0; i < nodeCount; i++) {
