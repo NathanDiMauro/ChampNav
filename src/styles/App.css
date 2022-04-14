@@ -272,3 +272,16 @@ Followed above tutorial, code is altered
   align-items: center;
   gap: 10px;
 }
+
+@media (max-width: 479px) {
+  body {
+      font-size: 13px;
+  }
+  #options {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+}

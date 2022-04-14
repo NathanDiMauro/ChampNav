@@ -33,3 +33,17 @@
     margin-top: 15px;
     background-color: lightblue;
 }
+
+@media (max-width: 479px) {
+    body {
+        font-size: 13px;
+    }
+    #input {
+        margin-top: 75px;
+        padding: .5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+}
