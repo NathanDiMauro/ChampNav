@@ -155,9 +155,6 @@ class Indoor extends React.Component {
     mapCanvasBox.width = currentMap.width;
     mapCanvasBox.height = currentMap.height;
 
-    var currentMap = document.getElementById("interior-map");
-    currentMap.style.transform = "translate(200px,200px);"
-
     displayCoords()
     //drawNodes()
     this.readNodeData()
