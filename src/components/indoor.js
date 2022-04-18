@@ -137,7 +137,7 @@ class Indoor extends React.Component {
     btnRight.addEventListener("click", this.moveRight)
 
     var zoomHandle = document.getElementById("myRange");
-    zoomHandle.addEventListener("input", this.testZoom)
+    zoomHandle.addEventListener("input", this.mapZoom)
 
     var closeIntDisplay = document.getElementById("interior-button-close");
     closeIntDisplay.addEventListener("click", this.closeInteriorMap)
@@ -145,7 +145,7 @@ class Indoor extends React.Component {
     openIntDisplay.addEventListener("click", this.openInteriorMap)
   
     var currentMap = document.getElementById("interior-map");
-    currentMap.style.transform = "translate(-30px, -500px)"
+    currentMap.style.transform = "translate(0px, 0px)"
 
     var mapCanvas = document.getElementById("nodesCanvas");
     var mapCanvasBox = document.getElementById("nodesCanvas-transform-box");
@@ -216,13 +216,16 @@ class Indoor extends React.Component {
     displayCoords()
   }
 
-  testZoom() {
+  mapZoom() {
     var currentMap = document.getElementById("interior-map-transform-box");
     var zoomSlider = document.getElementById("myRange");
     var currentLoc = document.getElementById("interior-curent-loc");
 
+
     currentMap.style.transform = "scale(" + zoomSlider.value + "%)"
     currentLoc.style.transform = "scale(" + zoomSlider.value + "%)"
+
+    currentMap.style.transform = currentMap.style.transform + " translate(-50%, -50%)"
 
     //drawNodes()
   }
@@ -298,12 +301,14 @@ class Indoor extends React.Component {
           tempXCoord = nodeDataLines[parseLineCount + 3]
           tempXCoord = tempXCoord.substring(11)
           tempXCoord = tempXCoord.slice(0,-2)
+          tempXCoord = tempXCoord / 0.269948
           nodesArrayX.push(tempXCoord)
   
           var tempYCoord = ""
           tempYCoord = nodeDataLines[parseLineCount + 4]
           tempYCoord = tempYCoord.substring(11)
           tempYCoord = tempYCoord.slice(0,-2)
+          tempYCoord = tempYCoord / 0.269948
           nodesArrayY.push(tempYCoord)
           parseLineCount += 6
         }
@@ -517,7 +522,7 @@ class Indoor extends React.Component {
 
           <div id="slider-container">
             <div class="slidecontainer">
-              <input type="range" min="2" max="200" defaultValue="100" class="slider" id="myRange"/>
+              <input type="range" min="25" max="200" defaultValue="100" class="slider" id="myRange"/>
             </div>
           </div>
 
