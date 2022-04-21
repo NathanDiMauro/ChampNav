@@ -221,11 +221,10 @@ class Indoor extends React.Component {
     var zoomSlider = document.getElementById("myRange");
     var currentLoc = document.getElementById("interior-curent-loc");
 
+    currentMap.style.transform = "translate(-50%, -50%)"
 
-    currentMap.style.transform = "scale(" + zoomSlider.value + "%)"
+    currentMap.style.transform = currentMap.style.transform + " scale(" + zoomSlider.value + "%)"
     currentLoc.style.transform = "scale(" + zoomSlider.value + "%)"
-
-    currentMap.style.transform = currentMap.style.transform + " translate(-50%, -50%)"
 
     //drawNodes()
   }
