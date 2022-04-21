@@ -157,7 +157,7 @@ class Indoor extends React.Component {
 
     displayCoords()
     //drawNodes()
-    this.readNodeData()
+    //this.readNodeData()
   }
 
   moveUp() {
@@ -355,6 +355,8 @@ class Indoor extends React.Component {
         for (let i = 0; i < pathConnections; i++) {
           const c = mapCanvas.getContext('2d')
           c.beginPath()
+          c.lineWidth = 4
+          c.strokeStyle = 'green'
           c.moveTo(nodesArrayX[pathStartID], nodesArrayY[pathStartID]);
           c.lineTo(nodesArrayX[connectingNodes[i]], nodesArrayY[connectingNodes[i]])
           c.closePath()
