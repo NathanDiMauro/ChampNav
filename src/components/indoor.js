@@ -44,6 +44,7 @@ import West1 from '../floorPlans/West/A1-West.svg'
 import West2 from '../floorPlans/West/A2-West.svg'
 import West3 from '../floorPlans/West/A3-West.svg'
 
+//Returns current transform coordinates of interior map
 function getXandY() {
   var currentMap = document.getElementById("interior-map");
   var currentTransform = currentMap.style.transform
@@ -76,6 +77,7 @@ function getXandY() {
   return finalCoords
 }
 
+//Displays the transform coordinates to on screen element
 function displayCoords() {
   var coordsDisplay = document.getElementById("current-coords");
   var coordsText = "X: "
@@ -85,6 +87,7 @@ function displayCoords() {
   coordsDisplay.innerText=coordsText
 }
 
+// Test function to check if node canvas is properly applied. Not used in final
 function drawNodes() {
 
   var mapCanvas = document.getElementById("nodesCanvas");
@@ -160,6 +163,7 @@ class Indoor extends React.Component {
     //this.readNodeData()
   }
 
+  //Function to move map up
   moveUp() {
     var currentMap = document.getElementById("interior-map");
     var finalTransform = "translate("
@@ -174,6 +178,7 @@ class Indoor extends React.Component {
     displayCoords()
   }
 
+  //Function to move map down
   moveDown() {
     var currentMap = document.getElementById("interior-map");
     var finalTransform = "translate("
@@ -188,6 +193,7 @@ class Indoor extends React.Component {
     displayCoords()
   }
 
+  // Function to move map left
   moveLeft() {
     var currentMap = document.getElementById("interior-map");
     var finalTransform = "translate("
@@ -202,6 +208,7 @@ class Indoor extends React.Component {
     displayCoords()
   }
 
+  // Function to move map right
   moveRight() {
     var currentMap = document.getElementById("interior-map");
     var finalTransform = "translate("
@@ -216,6 +223,7 @@ class Indoor extends React.Component {
     displayCoords()
   }
 
+  // Handles the scaling tied to the zoom on the UI for the interior map
   mapZoom() {
     var currentMap = document.getElementById("interior-map-transform-box");
     var zoomSlider = document.getElementById("myRange");
@@ -229,6 +237,7 @@ class Indoor extends React.Component {
     //drawNodes()
   }
 
+  // Closes all interior map objects
   closeInteriorMap() {
     var interiorDisplay = document.getElementById("interior-map-container");
     var showDisplay = document.getElementById("debugOpenIntDisplay");
@@ -238,6 +247,7 @@ class Indoor extends React.Component {
     showDisplay.style.zIndex = 11
   }
 
+  // Opens and initizlaizes indoor routing
   openInteriorMap() {
     var interiorDisplay = document.getElementById("interior-map-container");
     var showDisplay = document.getElementById("debugOpenIntDisplay");
@@ -260,6 +270,7 @@ class Indoor extends React.Component {
     console.log("Map W: " + currentMap.width + " H: " + currentMap.height)
   }
 
+  // Reads in node and path data, as well as draws them for indoor routing
   readNodeData() {
 
     var mapCanvas = document.getElementById("nodesCanvas");
@@ -271,6 +282,7 @@ class Indoor extends React.Component {
     mapCanvasBox.width = currentMap.width;
     mapCanvasBox.height = currentMap.height;
 
+    // Reading in data from nodemap file
     fetch('/ccmNodetest.svg')
     .then(response => response.text())
     .then(data => {
@@ -287,12 +299,14 @@ class Indoor extends React.Component {
   
       var nodeCount = 0;
   
+      // Counts how many nodes in the nodemap file
       nodeDataLines.forEach(element => {
         if (element === nodeDataLines[1]) {
           nodeCount += 1;
         }
       });
   
+      // Parses out x and y coords for each note adding them to an array
       var parseLineCount = 1
       nodeDataLines.forEach(element => {
         if (element === nodeDataLines[1]) {
@@ -313,6 +327,7 @@ class Indoor extends React.Component {
         }
       });
 
+      // Parses path data for each node
       parseLineCount = 1
       nodeDataLines.forEach(element => {
         if (element === nodeDataLines[1]) {
@@ -328,6 +343,7 @@ class Indoor extends React.Component {
 
       //PARSE DATA
 
+      // Draws individual nodes
       for (let i = 0; i < nodeCount; i++) {
         const c = mapCanvas.getContext('2d')
     
