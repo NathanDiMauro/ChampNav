@@ -356,7 +356,7 @@ class Indoor extends React.Component {
         c.fill()
       }
 
-      //Draw Paths
+      // Draw Paths
       for (let i = 0; i < nodeCount; i++) {
         var currentPath = nodesArrayPaths[i]
         var pathStartID = currentPath.split("-")[0]
@@ -372,7 +372,7 @@ class Indoor extends React.Component {
           const c = mapCanvas.getContext('2d')
           c.beginPath()
           c.lineWidth = 4
-          c.strokeStyle = 'green'
+          c.strokeStyle = 'red'
           c.moveTo(nodesArrayX[pathStartID], nodesArrayY[pathStartID]);
           c.lineTo(nodesArrayX[connectingNodes[i]], nodesArrayY[connectingNodes[i]])
           c.closePath()

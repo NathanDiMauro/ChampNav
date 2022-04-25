@@ -36,40 +36,40 @@ export class MapContainer extends Component {
     console.log('dlat', this.state.destinationLat)
     console.log('dlng', this.state.destinationLng)
 
-    if (this.state.destinationLat == "44.47327567286289" && this.state.destinationLng == "-73.20589387668262"){
-      console.log("Offline Route")
-      this.setState({
-        route: [{lat: 44.4733761, lng: -73.2030435},
-                {lat: 44.4733338, lng: -73.20336},
-                {lat: 44.4733934, lng: -73.20345180000001},
-                {lat: 44.4735258, lng: -73.2034491},
-                {lat: 44.4735234, lng: -73.2035009},
-                {lat: 44.4736017, lng: -73.2035083},
-                {lat: 44.4735969, lng: -73.20376040000001},
-                {lat: 44.4739993, lng: -73.2037912},
-                {lat: 44.47392079999999, lng: -73.2059774},
-                {lat: 44.4733386, lng: -73.20593029999999}]
-      })
-    }
-    else if (this.state.destinationLat == "44.473198780008346" && this.state.destinationLng == "-73.20450179833591"){
-      console.log("Offline Route")
-      this.setState({
-        route: [{lat: 44.4733392, lng: -73.2058962},
-                {lat: 44.473351, lng: -73.20542739999999},
-                {lat: 44.47280200000001, lng: -73.2048892},
-                {lat: 44.4731185, lng: -73.204954},
-                {lat: 44.4732084, lng: -73.2046254},
-                {lat: 44.4732017, lng: -73.2044982}]
-      })
-    }
-    else {
+    // if (this.state.destinationLat == "44.47327567286289" && this.state.destinationLng == "-73.20589387668262"){
+    //   console.log("Offline Route")
+    //   this.setState({
+    //     route: [{lat: 44.4733761, lng: -73.2030435},
+    //             {lat: 44.4733338, lng: -73.20336},
+    //             {lat: 44.4733934, lng: -73.20345180000001},
+    //             {lat: 44.4735258, lng: -73.2034491},
+    //             {lat: 44.4735234, lng: -73.2035009},
+    //             {lat: 44.4736017, lng: -73.2035083},
+    //             {lat: 44.4735969, lng: -73.20376040000001},
+    //             {lat: 44.4739993, lng: -73.2037912},
+    //             {lat: 44.47392079999999, lng: -73.2059774},
+    //             {lat: 44.4733386, lng: -73.20593029999999}]
+    //   })
+    // }
+    // else if (this.state.destinationLat == "44.473198780008346" && this.state.destinationLng == "-73.20450179833591"){
+    //   console.log("Offline Route")
+    //   this.setState({
+    //     route: [{lat: 44.4733392, lng: -73.2058962},
+    //             {lat: 44.473351, lng: -73.20542739999999},
+    //             {lat: 44.47280200000001, lng: -73.2048892},
+    //             {lat: 44.4731185, lng: -73.204954},
+    //             {lat: 44.4732084, lng: -73.2046254},
+    //             {lat: 44.4732017, lng: -73.2044982}]
+    //   })
+    // }
+    // else {
       axios.get(`https://maps.googleapis.com/maps/api/directions/json?destination="`+this.state.destinationLat+`,`+this.state.destinationLng+`"&origin="`+this.state.originLat+`,`+this.state.originLng+`"&mode=walking&key=AIzaSyBtX-ubyw8TF5OeJUcP_YccaTEI9eDs3Og`)
         .then(res =>
           this.setState({
             directions: res.data.routes[0].legs[0].steps
           })
         )
-    }
+    // }
   }
 
 
